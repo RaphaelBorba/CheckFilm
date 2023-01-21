@@ -1,11 +1,12 @@
-import { createGenre } from "../controllers/genre.controllers";
+import { createGenre, deleteGenreById } from "../controllers/genre.controllers";
 import { Router } from "express";
-import { validateGenre } from "../middlewares/genre.middlewares";
+import { validateGenreById, validateGenreByName } from "../middlewares/genre.middlewares";
 
 const genreRoutes = Router()
 
 genreRoutes
-    .post('/genre', validateGenre, createGenre)
+    .post('/genre', validateGenreByName, createGenre)
+    .delete('/genre/:id', validateGenreById, deleteGenreById)
 
 
 
