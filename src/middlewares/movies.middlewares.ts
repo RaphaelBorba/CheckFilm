@@ -1,6 +1,6 @@
 import { GenreOrStreamerSchema } from "../schemas/movies.schemas";
 import { NextFunction, Request, Response } from "express";
-import { checkGenre } from "../repositories/movies.repositories";
+import { checkGenre } from "../repositories/genre.repositories";
 
 
 export async function validateGenre(req: Request, res: Response, next: NextFunction) {
