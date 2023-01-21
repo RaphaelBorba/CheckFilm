@@ -8,6 +8,5 @@ export const MoviesSchema = Joi.object({
     title: Joi.string().required(),
     genre: Joi.number().required(),
     streamer: Joi.number().required(),
-    status: Joi.boolean().required(),
     resume: Joi.string()
 })

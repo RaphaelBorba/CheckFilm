@@ -6,6 +6,6 @@ export type Movies = {
     title: string,
     genre: number,
     streamer: number,
-    status: boolean,
-    resume: string
+    status: false,
+    resume: string | null
 }

@@ -7,8 +7,13 @@ export function getMoviesDB() {
     return promise
 }
 
+export function checkMovieByNameDB(name: string) {
 
-export function createMovieDB() {
+    return db.query(`SELECT * FROM movies WHERE title = ($1)`, [name.toLowerCase()])
+}
 
+export function createMovieDB(body: Movies) {
 
+    return db.query(`INSERT INTO movies(title, genre, streamer, status) VALUES ($1,$2,$3,$4) `,
+        [body.title, body.genre, body.streamer, false])
 }

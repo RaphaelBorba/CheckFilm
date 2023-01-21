@@ -1,32 +1,26 @@
-import { GenreOrStreamerSchema } from "../schemas/movies.schemas";
+import { MoviesSchema } from "../schemas/movies.schemas";
 import { NextFunction, Request, Response } from "express";
-import { checkStreamerByIdDB, checkStreamerBynameDB } from "../repositories/streamer.repositories";
+import { checkMovieByNameDB } from "../repositories/movies.repositories";
+import { checkGenreByIdDB } from "../repositories/genre.repositories";
+import { checkStreamerByIdDB } from "../repositories/streamer.repositories";
 
 
-export async function validateStreamerByName(req:Request, res:Response, next:NextFunction){
+
+export async function validateMovieBody(req:Request, res:Response, next:NextFunction){
 
     const {body} = req
 
-    const {error} = GenreOrStreamerSchema.validate(body)
+    const {error} = MoviesSchema.validate(body, {abortEarly:false})
 
-    if(error) {return res.sendStatus(400)}
+    if(error) {return res.status(400).send(error.details.map(e=>e.message))}
 
-    const check = await checkStreamerBynameDB(body.name)
-
-    if(check.rows[0]) {return res.sendStatus(409)}
-
-    next()
-}
-
-export async function validateStreamerById(req:Request, res:Response, next:NextFunction){
-
-    const {id} = req.params
-
-    const check = await checkStreamerByIdDB(id)
-    console.log(check);
+    const checkTitle = await checkMovieByNameDB(body.title)
     
+    const checkGenre = await checkGenreByIdDB(body.genre)
 
-    if(!check.rows[0]){ return res.sendStatus(404)}
+    const checkStreamer = await checkStreamerByIdDB(body.streamer)
+    
+    if(checkTitle.rows[0] || !checkGenre.rows[0] || !checkStreamer.rows[0]) {return res.sendStatus(409)}
 
     next()
 }

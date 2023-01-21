@@ -1,6 +1,6 @@
 import { createStreamer, deleteStreamerById, getStreamers } from "../controllers/streamer.controllers";
 import { Router } from "express";
-import { validateStreamerById, validateStreamerByName } from "../middlewares/movies.middlewares";
+import { validateStreamerById, validateStreamerByName } from "../middlewares/streamer.middleware";
 
 const streamerRouter = Router()
 

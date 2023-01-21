@@ -1,4 +1,4 @@
-import { getMoviesDB } from "../repositories/movies.repositories";
+import { createMovieDB, getMoviesDB } from "../repositories/movies.repositories";
 import { Request, Response } from "express";
 
 
@@ -23,4 +23,17 @@ export async function getMovies(req: Request, res: Response) {
 
 export async function createMovie(req: Request, res: Response) {
 
+    const { body } = req
+
+    try {
+
+        await createMovieDB(body)
+
+        res.sendStatus(201)
+
+    } catch (error) {
+
+        console.log(error)
+        res.sendStatus(500)
+    }
 }
