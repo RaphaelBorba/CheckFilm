@@ -16,3 +16,16 @@ export async function getMovies(req:Request, res:Response){
         res.sendStatus(500)
     }
 }
+
+
+export async function createGenre(req:Request, res:Response){
+
+}
+
+export async function createStreamer(req:Request, res:Response){
+    
+}
+
+export async function createMovie(req:Request, res:Response){
+    
+}
