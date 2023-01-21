@@ -1,11 +1,11 @@
 import express from 'express';
+import { moviesRouter } from './routes/index'
 
 const app = express()
 
-app.get('/health', (req, res)=>{
+app.get('/health', (req, res) => {res.sendStatus(200)})
+app.use(moviesRouter)
 
-    res.sendStatus(200)
-})
 
 const port = 4000
-app.listen(port, ()=>console.log("Server on "+port))
+app.listen(port, () => console.log("Server on " + port))
