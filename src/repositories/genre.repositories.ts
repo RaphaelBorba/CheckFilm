@@ -21,3 +21,9 @@ export function deleteGenreByIdDB(id:string){
 
     return db.query(`DELETE FROM genre WHERE id = ($1) `, [id])
 }
+
+export function getGenresDB(){
+
+    const promise = db.query(`SELECT * FROM genre`)
+    return promise
+}

@@ -1,4 +1,4 @@
-import { createGenreDB, deleteGenreByIdDB } from "../repositories/genre.repositories"
+import { createGenreDB, deleteGenreByIdDB, getGenresDB } from "../repositories/genre.repositories"
 import { Request, Response } from "express"
 
 
@@ -32,6 +32,21 @@ export async function deleteGenreById(req: Request, res: Response){
         
     } catch (error) {
 
+        console.log(error)
+        res.sendStatus(500)
+    }
+}
+
+export async function getGenres(req:Request, res:Response){
+
+    try {
+
+        const genres = await getGenresDB()
+
+        res.status(200).send(genres.rows)
+        
+    } catch (error) {
+        
         console.log(error)
         res.sendStatus(500)
     }
