@@ -4,8 +4,8 @@ import { moviesRouter } from './routes/index'
 const app = express()
 app.use(express.json())
 
-app.get('/health', (req, res) => {res.sendStatus(200)})
-app.use(moviesRouter)
+app.get('/health', (req, res) => { res.sendStatus(200) })
+    .use(moviesRouter)
 
 
 const port = 4000
