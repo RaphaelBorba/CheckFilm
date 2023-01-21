@@ -1,10 +1,10 @@
 import Joi from "joi";
 
-const GenreOrStreamerSchema = Joi.object({
+export const GenreOrStreamerSchema = Joi.object({
     name: Joi.string().required()
 })
 
-const MoviesSchema = Joi.object({
+export const MoviesSchema = Joi.object({
     title: Joi.string().required(),
     genre: Joi.number().required(),
     streamer: Joi.number().required(),

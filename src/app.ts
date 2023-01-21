@@ -2,6 +2,7 @@ import express from 'express';
 import { moviesRouter } from './routes/index'
 
 const app = express()
+app.use(express.json())
 
 app.get('/health', (req, res) => {res.sendStatus(200)})
 app.use(moviesRouter)
