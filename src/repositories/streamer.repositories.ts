@@ -11,6 +11,16 @@ export function getStreamersDB(){
     return db.query(`SELECT * FROM streamer`)
 }
 
+export function deleteStreamerByIdDB(id: string){
+
+    return db.query(`DELETE FROM streamer WHERE id = ($1)`, [id])
+}
+
+export function checkStreamerByIdDB(id:string){
+
+    return db.query(`SELECT * FROM streamer WHERE id = ($1)`, [id])
+}
+
 export function checkStreamerBynameDB(name:string){
 
     return db.query(`SELECT * FROM streamer WHERE name = ($1)`, [name.toLowerCase()])

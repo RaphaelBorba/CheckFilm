@@ -24,7 +24,7 @@ export async function validateGenreById(req: Request, res: Response, next: NextF
 
     const check = await checkGenreByIdDB(id)
 
-    if (!check.rows[0]) { return res.sendStatus(409) }
+    if (!check.rows[0]) { return res.sendStatus(404) }
 
     next()
 }

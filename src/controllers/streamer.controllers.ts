@@ -1,4 +1,4 @@
-import { createStreamerDB, getStreamersDB } from "../repositories/streamer.repositories";
+import { createStreamerDB, deleteStreamerByIdDB, getStreamersDB } from "../repositories/streamer.repositories";
 import { Request, Response } from "express";
 
 
@@ -28,6 +28,23 @@ export async function getStreamers(req:Request, res:Response){
         const genres = await getStreamersDB()
 
         res.status(200).send(genres.rows)
+        
+    } catch (error) {
+        
+        console.log(error)
+        res.sendStatus(500)
+    }
+}
+
+export async function deleteStreamerById(req:Request, res:Response){
+
+    const {id} = req.params
+
+    try {
+
+        await deleteStreamerByIdDB(id)
+
+        res.sendStatus(200)
         
     } catch (error) {
         
