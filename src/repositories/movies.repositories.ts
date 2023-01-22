@@ -45,7 +45,7 @@ export function updateUnsawMovieDB(id: string) {
 
 export function getSeenMoviesDB() {
 
-    return db.query(`SELECT m.title, s.name AS streamer, g.name AS genre 
+    return db.query(`SELECT m.title, s.name AS streamer, g.name AS genre , m.resume
                     FROM movies m 
                     LEFT JOIN streamer s ON m.streamer = s.id 
                     LEFT JOIN genre g ON m.genre = g.id
