@@ -15,5 +15,15 @@ export function checkMovieByNameDB(name: string) {
 export function createMovieDB(body: Movies) {
 
     return db.query(`INSERT INTO movies(title, genre, streamer, status) VALUES ($1,$2,$3,$4) `,
-        [body.title, body.genre, body.streamer, false])
+        [body.title.toLowerCase(), body.genre, body.streamer, false])
+}
+
+export function checkMovieByIdDB(id: string){
+
+    return db.query(`SELECT * FROM movies WHERE id = ($1)`, [id])
+}
+
+export function deleteMovieByIdDB(id: string){
+
+    return db.query(`DELETE FROM movies WHERE id = ($1)`, [id])
 }

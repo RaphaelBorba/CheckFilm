@@ -1,4 +1,4 @@
-import { createMovieDB, getMoviesDB } from "../repositories/movies.repositories";
+import { createMovieDB, deleteMovieByIdDB, getMoviesDB } from "../repositories/movies.repositories";
 import { Request, Response } from "express";
 
 
@@ -17,10 +17,6 @@ export async function getMovies(req: Request, res: Response) {
     }
 }
 
-
-
-
-
 export async function createMovie(req: Request, res: Response) {
 
     const { body } = req
@@ -33,6 +29,23 @@ export async function createMovie(req: Request, res: Response) {
 
     } catch (error) {
 
+        console.log(error)
+        res.sendStatus(500)
+    }
+}
+
+export async function deleteMovieById( req:Request, res:Response){
+
+    const {id} = req.params
+
+    try {
+
+        await deleteMovieByIdDB(id)
+
+        res.sendStatus(200)
+        
+    } catch (error) {
+        
         console.log(error)
         res.sendStatus(500)
     }
