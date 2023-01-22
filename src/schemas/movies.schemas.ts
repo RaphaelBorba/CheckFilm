@@ -10,3 +10,6 @@ export const MoviesSchema = Joi.object({
     streamer: Joi.number().required(),
     resume: Joi.string()
 })
+export const ResumeSchema = Joi.object({
+    resume: Joi.string()
+})

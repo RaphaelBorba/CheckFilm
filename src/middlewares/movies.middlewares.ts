@@ -1,4 +1,4 @@
-import { MoviesSchema } from "../schemas/movies.schemas";
+import { MoviesSchema, ResumeSchema } from "../schemas/movies.schemas";
 import { NextFunction, Request, Response } from "express";
 import { checkMovieByIdDB, checkMovieByNameDB } from "../repositories/movies.repositories";
 import { checkGenreByIdDB } from "../repositories/genre.repositories";
@@ -31,9 +31,15 @@ export async function validateMovieById(req: Request, res: Response, next: NextF
 
     const { id } = req.params
 
+    if (req.body) {
+        const { error } = ResumeSchema.validate(req.body, {abortEarly:false})
+        
+        if(error) { return  res.sendStatus(400)}
+    }
+
     const checkId = await checkMovieByIdDB(id)
 
-    if(!checkId.rows[0]) { return res.sendStatus(404)}
+    if (!checkId.rows[0]) { return res.sendStatus(404) }
 
     next()
 }
