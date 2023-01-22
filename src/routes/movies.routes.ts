@@ -1,4 +1,4 @@
-import { createMovie, deleteMovieById, getMovies, updateMovie, updateUnsawMovie } from "../controllers/movies.controllers";
+import { createMovie, deleteMovieById, getMovies, getSeenMovies, updateMovie, updateUnsawMovie } from "../controllers/movies.controllers";
 import { Router } from "express";
 import { validateMovieBody, validateMovieById } from "../middlewares/movies.middlewares";
 
@@ -10,7 +10,6 @@ moviesRouter
     .delete('/movies/:id', validateMovieById, deleteMovieById)
     .post('/movies/saw/:id', validateMovieById, updateMovie)
     .post('/movies/unsaw/:id', validateMovieById, updateUnsawMovie)
-
-
+    .get('/movies/seen', getSeenMovies)
 
 export { moviesRouter }

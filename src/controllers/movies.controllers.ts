@@ -1,4 +1,4 @@
-import { createMovieDB, deleteMovieByIdDB, getMoviesDB, updateMovieDB, updateMovieWithResumeDB, updateUnsawMovieDB } from "../repositories/movies.repositories";
+import { createMovieDB, deleteMovieByIdDB, getMoviesDB, getSeenMoviesDB, updateMovieDB, updateMovieWithResumeDB, updateUnsawMovieDB } from "../repositories/movies.repositories";
 import { Request, Response } from "express";
 
 
@@ -84,6 +84,21 @@ export async function updateUnsawMovie(req:Request, res:Response){
         await updateUnsawMovieDB(id)
 
         res.sendStatus(200)
+        
+    } catch (error) {
+        
+        console.log(error)
+        res.sendStatus(500)
+    }
+}
+
+export async function getSeenMovies(req:Request, res:Response){
+
+    try {
+
+        const seenMovies = await getSeenMoviesDB()
+
+        res.status(200).send(seenMovies.rows)
         
     } catch (error) {
         

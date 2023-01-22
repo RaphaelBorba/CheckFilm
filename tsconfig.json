@@ -7,16 +7,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "rootDirs": ["src", "tests"],
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    },
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths"
-      }
-    ]
+    "baseUrl": "src"
   },
   "include": ["src", "tests"]
 }
